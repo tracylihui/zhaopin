@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+		<head>
+		<title>个人中心</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		<LINK rel=stylesheet type="text/css" href="__PUBLIC__/css/zmm.css">
+		<LINK rel=stylesheet type="text/css" href="__PUBLIC__/css/index_style_web.css" media="screen, projection">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/jcrop_zh/js/jquery.Jcrop.js"></script>
+		<link rel="stylesheet" href="__PUBLIC__/jcrop_zh/css/jquery.Jcrop.css" type="text/css" />
+		<link href="__PUBLIC__/css/newcenter.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="__PUBLIC__/js/login.js"></script>
+		<script type="text/javascript">
+			var pcob = new Object();
+			//文件上传后，在iframe中，会调用此方法
+			function uploadCallBack(filename){
+				if(filename==false){
+					alert("文件上传失败");
+					return;
+				}
+				pcob.picname=filename; //保存住图片名
+				//alert("文件上传成功："+filename);
+				//得到了文件名，就能进行显示等相关操作了。
+				$("#mypic").append("<img id='mid' src='__PUBLIC__/Uploads/"+filename+"'/>");
+				$("#mypic").append("<input type='hidden' name='picname' value='"+filename+"' />");
+
+			
+			}
+			
+			//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
+			function showCoords(obj){
+				/*
+				$("#x1").val(obj.x);
+				$("#y1").val(obj.y);
+				$("#x2").val(obj.x2);
+				$("#y2").val(obj.y2);
+				$("#w").val(obj.w);
+				$("#h").val(obj.h);
+				*/
+				//获取裁剪位置及宽高。
+				pcob.x=obj.x;
+				pcob.y=obj.y;
+				pcob.w=obj.w;
+				pcob.h=obj.h;
+			}
+			
+			//执行裁剪处理
+			function docut(){
+				var pic=$("#p").val();
+				$.ajax({
+					type:"POST",
+					url:"__APP__/Users/doCut?oldpic="+pic,
+					data:pcob,
+					success:function(){
+						$("#mypic1").empty();
+						$("#mypic1").append("<img id='mid' src='__PUBLIC__/Uploads/"+pcob.picname+"?id="+Math.random()+"'/>");
+						//选择图片，并绑定裁剪框事件
+						$("#mid").Jcrop({
+							onChange:showCoords,
+							onSelect:showCoords,
+						});	
+						changeheadpic(pcob.picname);
+					}
+				
+				});
+				
+			} 
+		
+		</script>
+		<script type="text/javascript">
+			try{
+			document.execCommand("BackgroundImageCache", false, true);
+			}catch(e){}
+		</script>
+		<script type="text/javascript">
+			window.staticTime=new Date().getTime();
+			if (self != top) {
+			top.location = self.location;
+			}
+		</script>
+		</head>
+
+		<body>
+<div style="z-index:512;margin-bottom:25px;" class="nsinatopbar"> <{include file="Public/user/topbar.html"}>
+          <div class="sinablogbody">
+    <div class="SG_connr">
+              <div class="pic"><img src="__PUBLIC__/Uploads/<{$vo.picname}>" /></div>
+              <div class="personal">
+        <div class="username"><{$smarty.session.userinfo.username}></div>
+        <div>
+                  <div class="hh1">关注：<{$smarty.session.num}></div>
+                  <div class="hh2">粉丝：<{$smarty.session.num1}></div>
+                </div>
+      </div>
+            </div>
+    <div class="main">
+    	<div class="photo">
+        	<div style=" color:#000; font-weight:bold; font-size:16px; margin-top:30px; margin-left:20px;">修改头像</div>
+            <div style=" color:#000; font-size:14px;margin-left:20px;margin-top:30px;">
+            	<div>选取头像（240x240，文件大小不得超过2M）</div>
+                <iframe name="iframe1" src="" frameborder="0" style="display:none" ></iframe>
+                <form action="__APP__/users/doupload" method="post" target="iframe1" enctype="multipart/form-data">
+                	<input type="file" name="picname" size="24" /><input type="submit" value="上传" />
+                </form>
+                <form action="__APP__/Users/updatepic" method="post">
+                <input type="hidden" name="id" value="<{$vo.id}>"/>
+                <div class="img" id="mypic"></div>
+                
+                <input type="submit" value="保存头像" id="sub" />
+                
+                </form>
+            </div>
+        
+      </div>
+              <div class="password">
+        <div style=" color:#000; font-weight:bold; font-size:16px; margin-top:30px; margin-left:20px;">修改密码</div>
+        <div style=" color:#000; font-size:14px;margin-left:20px;margin-top:30px;">
+            <form id="idfrom" action="__APP__/Users/updatepass" method="post">
+            <div style="margin-top:10px;">当前密码</div>
+            <input type="password" name="pass">
+            <div style="margin-top:10px;">新密码</div>
+            <input type="password" id="aa" name="pass1" value="">
+            <div style="margin-top:10px;">重复新密码</div>
+            <input type="password" id="bb" name="pass2" value="">
+            <br />
+           	<input type="submit" value="确认修改密码" />
+          </form>
+                </div>
+      </div>
+      
+      
+            </div>
+  </div>
+        </div>
+
+<!--================公共页脚信息开始==================== --> 
+<{include file="Public/footer.html"}> 
+<!--==================================================== -->
+</body>
+</html>

@@ -1,0 +1,41 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/listUser/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="id" value="{$vo.id}"/>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dt>用户名（登陆）：</dt>
+				<dd><input type="text" readonly class="required"  style="width:100%" name="username" value="{$vo.username}"/></dd>
+			</dl>
+			<dl>
+				<dt>登陆密码：</dt>
+				<dd><input type="password" id="user_pass" size="10" style="width:100%" class="required" name="userpass"/></dd>
+			</dl>
+			<dl>
+				<dt>重复密码：</dt>
+				<dd><input type="password" size="10" style="width:100%" class="required" equalto="#user_pass" name="ruserpass"/></dd>
+			</dl>
+             <dl>
+				<dt>名称：</dt>
+				<dd><input type="text" class="required"  style="width:100%" value="{$vo.name}" name="name"/></dd>
+			</dl>
+            <dl>
+				<dt>邮箱：</dt>
+				<dd><input type="text" size="10" style="width:100%" class="required" value="{$vo.email}"  name="email"/></dd>
+			</dl>
+             <dl>
+				<dt>人员：</dt>
+				<dd><input type="radio" class="required" <if condition="$vo['isadmin'] eq 1">checked="checked"</if> name="isadmin" value="1"/>管理员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="required" <if condition="$vo['isadmin'] eq 0">checked="checked"</if>  name="isadmin" value="0"/>审核员</dd>
+			</dl>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

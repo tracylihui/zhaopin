@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>勤工助学在线申请系统</title>
+<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="__PUBLIC__/js/login.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+
+</head>
+
+<body id="test1" style="background-color:#f3f3f3">
+<include file="Public:header" />
+
+<div class="detail_main">
+
+  <div class="left">
+    <div class="left_content">
+      <div class="pic"><img src="__PUBLIC__/Uploads/default.jpg" /></div>
+      <div class="username">{$list.company}</div>
+    </div>
+  </div>
+  <div class="right">
+  <form id="applyform" action="__URL__/update" method="post">
+    <div class="right_content">
+      <h1>{$list.title}</h1>
+      <div class="one">
+        <h4>{$list.company}</h4>
+        <h5>
+        发布时间：{$list.addtime|date='Y-m-d', ###}
+        </h4>
+      </div>
+	 
+      <dl style="float:left">
+        <dt>工作时间</dt>
+        <dd>{$list.time}</dd>
+      </dl>
+      <dl>
+        <dt>工作地点</dt>
+        <dd>{$list.place}</dd>
+      </dl>
+	  
+      <dl style="float:left">
+        <dt>招聘人数</dt>
+        <dd>{$list.number}</dd>
+      </dl>
+	  <dl>
+        <dt>截至时间</dt>
+        <dd></dd>
+      </dl>
+      <dl id="other">
+        <dt>项目简介</dt>
+        <dd id="noborder">{$list.content}</dd>
+      </dl>
+      <dl id="other1">
+        <dt>选择职位</dt>
+        <dd  id="noborder">
+        <volist id="vo" name="list.position">
+        	<input type="checkbox" name="position[]" style="margin-left:5px;" <if condition="in_array($vo , $apply['position'])">checked="checked"</if> value="{$vo}">{$vo}
+        </volist>
+        </dd>
+      </dl>
+	  <dl id="other">
+        <dt>申请理由</br><span style="font-size:12px;">（200字以内）</span></dt>
+        <dd id="noborder">
+        
+        <input type="hidden" name="aid" value="{$list.id}">
+		<input type="hidden" name="id" value="{$apply.id}">
+		<textarea  maxlength="200" style="width:560px; height:100px;overflow-y:auto" placeholder="请输入你的申请理由"  <if condition="$list.status neq 1">readonly</if> required="required" name="reason">{$apply.reason}</textarea>
+       
+        </dd>
+      </dl>
+      <if condition="$list.status eq 1"><input id="sub" type="submit" value="修改"><else /><div class="three">不能修改</div></if>
+    </div>
+    </form>
+  </div>
+</div>
+<include file="Login:index" /> 
+<include file="Public:footer" />
+</body>
+</html>

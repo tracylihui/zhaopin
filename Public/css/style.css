@@ -1,0 +1,135 @@
+body{ margin:0 auto; padding:0;font-size:12px; font-family:'宋体'; color:#333333; background-color:#f7f7f7}
+body,html,h1,h2,h3,h4,h5,h6,hr,p,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,select{margin:0;padding:0;}
+
+a{ color:#3D3D3D; text-decoration:none; cursor:pointer}
+a:hover{ text-decoration: underline; color:#ff6600;}
+img{ border:0 none; vertical-align:top;}
+ul li{list-style:none;}
+
+/*头部*/
+.header{min-width: 960px;height: 46px; background:#4d545d url(../image/nav_sprite_new2.png) left -50px;border-top: 0 solid #4d5765;}
+.header .head_center{ width:960px; margin:0 auto; line-height:46px; color:#FFF;font-family:'MicroSoft YaHei'; font-size:20px;}
+.header .head_right{ float:right; font-size:15px;}
+.header .head_right a{ color:#fff; text-decoration:none; cursor:pointer}
+.header .head_right a:hover{ text-decoration: none; color:#ff6600;}
+.jx{border-bottom:1px solid #ccc;width:100%;margin:auto;-moz-box-shadow:0 0 5px rgba(0,0,0,.2)}
+.menu-bar{ width:100%; height:120px; background:url(../image/menu_banner.png) repeat-x;border-bottom:1px solid #ababab;}
+.menu-bar .menu{ width:960px; height:120px; background:url(../image/ox-banner.png); margin:0 auto; position:relative;}
+.menu-bar ul{ position:absolute; bottom:0; height: 36px; margin-bottom:1px;}
+.menu-bar ul li {text-align: center; line-height: 36px; width:120px; display:inline; float:left; font-size:17px; background-color:#f7f7f7;border:1px solid #ababab; cursor:pointer; margin-right:7px; }
+.menu-bar a {display: block; color: #000}
+.menu-bar a:hover { background-color:#fcfcfc; text-decoration:none;}
+.menu-bar #highlight { background-color:#495360; color:#FFF}
+/*主体部分*/
+.main{ width:960px; border:1px solid #d9d9d9; margin:0 auto; margin-top:32px; margin-bottom:20px;box-shadow: #d9d9d9 0px 0px 15px;}
+.padtop{ padding-top:30px;}
+.white{ background-color:#FFF}
+.main .article{ border-bottom:1px solid #ebebeb; height:80px; margin-left:50px;margin-right:50px; margin-top:10px;}
+.main .biaoti{width:860px; height:40px;margin-left:50px;margin-right:50px; }
+.main .biaoti ul{ height:40px; line-height:40px; font-size:13px; border-bottom:1px solid #d9d9d9;background-color:#f6f6f6}
+.main .biaoti li{ float:left;width:210px;padding-left:5px;}
+
+.main .myarticle{ border-bottom:1px solid #ebebeb; height:60px; margin-left:50px;margin-right:50px; margin-top:10px;}
+.main .myarticle ul{ width:860px; height:60px; line-height:60px;}
+.main .myarticle li{ width:210px;float:left; padding-left:5px;}
+
+.main .article_info{ width:700px; height:100%;float:left}
+.main .article_title{ width:100%; height:50px; line-height:50px; color:#117db3; font-size:15px; font-family:'微软雅黑';}
+.main .article_other{height:30px; color:#aaaaaa}
+.main .article_other li{ width:230px; float:left}
+.main .article_btn{width:160px; height:100%; float:left;}
+.main .article_btn ul li {text-align: center; line-height: 30px; width:120px; font-size:14px; font-family:'微软雅黑'; cursor:pointer; margin-top:25px;margin-left:20px; }
+.main .article_btn a {display: block; color: #fff; text-decoration:none;background-color:#ef7c5f;}
+/*个人中心*/
+.personal{height:790px;}
+.personal input[type="submit"]{background-color:#ef7c5f; border:none; color:#FFF;font-family:'MicroSoft YaHei'; margin-top:10px;}
+.personal .left{ width:199px; height:790px; float:left; border-right:1px solid #e1e1e1; background-color:#f2f2f2;font-family:'MicroSoft YaHei';}
+.personal img{
+    display:block; margin:0 auto; margin-top:30px; margin-bottom:20px;
+    border-radius:50%;
+}
+.personal .stuname{ text-align:center; font-size:17px;font-family:'MicroSoft YaHei';margin-bottom:40px;}
+
+.personal .left ul li{ width:199px; text-align:center; height:35px; line-height:35px; font-size:16px; cursor:pointer}
+.personal .left a{ display:block;}
+.personal .left a:hover{ background-color:#d8e2ed; display:block;text-decoration: none; color:#ff6600;}
+.personal .current{ color:#4483bf}
+
+.personal .right{ width:700px; height:760px; float:left; padding-left:30px; padding-right:30px; padding-top:10px;}
+/*page分页*/
+.scott{height:30px; overflow:hidden; text-align:center; padding-top:9px; line-height:21px; margin-bottom:20px; margin-top:20px; }
+.scott A{border:#dddddd 1px solid; PADDING:2px 5px; MARGIN-RIGHT: 5px;  TEXT-DECORATION: none; background:#fff;}
+.scott A:hover{border:1px solid #dddddd; text-decoration:none; BACKGROUND-COLOR:#555b65; color:#FFF;}
+.scott A:active{border:1px solid #dddddd; text-decoration:none; BACKGROUND-COLOR:#555b65;}
+.scott SPAN.current{border: #dddddd 1px solid; PADDING:1px 5px;  FONT-WEIGHT: bold;  COLOR: #fff; MARGIN-RIGHT: 2px; BACKGROUND-COLOR: #555b65;MARGIN-RIGHT: 5px;}
+.scott SPAN.disabled{BORDER:#237ac7 1px solid; PADDING:2px 5px; COLOR:#237ac7; MARGIN-RIGHT: 5px; background:#d8f1ff;}
+/*文章详细信息*/
+.detail_main{ width:100%; height:880px;}
+.detail_main .left{ width:33%;float:left;}
+.left_content{width:300px;height:280px; float:right; }
+.left_content .pic{ width:100%; height:50%;border-bottom:1px solid #dddddd; text-align:center}
+.left_content .pic img{ margin-top:20px; height:100px;width:100px }
+.left_content .username{ font-family:'黑体'; width:70%; margin:0 auto; padding-top:20px;font-size:20px;text-align:center;color:#333333; }
+.detail_main .right{height:880px;width:67%;float:left; background-color:#FFF;font-family:'MicroSoft YaHei';}
+.detail_main .right .right_content{ width:660px;padding-left:40px; padding-top:50px;}
+.right_content h1{ font-size:30px; color:#333333; }
+.right_content .one{ height:70px; line-height:50px; border-bottom:2px solid #f2f2f2;}
+.right_content h4{ float:left; color:#7ab1cc;}
+.right_content h5{ float:right; color:#bbbbbb;}
+.right_content dl{ min-height:60px; margin-top:30px;}
+.right_content dt{ float:left; font-size:18px;height:59px;  color:#bbbbbb;width:100px;}
+.right_content dd{ float:left;font-size:14px;min-height:59px; width:230px; border-bottom:1px dotted #c7c7c7}
+.right_content #other{margin-top:30px; min-height:150px;}
+.right_content #other dt{ float:left; font-size:18px;color:#bbbbbb;width:100px;}
+.right_content #other dd{ float:left;font-size:14px;width:560px; }
+
+.right_content #other1{margin-top:30px; min-height:50px;}
+.right_content #other1 dt{ float:left; font-size:18px;color:#bbbbbb;width:100px;}
+.right_content #other1 dd{ float:left;font-size:14px;width:560px; }
+
+.right_content #noborder{ border:none;}
+.right_content #sub{ height:50px; width:200px; background-color:#ee6644; margin:0 auto; margin-top:10px; line-height:50px; text-align:center; color:#FFF; font-size:17px;display:block; border:none; cursor:pointer;}
+
+.right_content .three{ height:50px; width:200px; background-color:#e7e7e7; margin:0 auto; margin-top:10px; line-height:50px; text-align:center; color:#b4b4b4; font-size:17px;display:block}
+.right_content a:hover{ text-decoration: none; }
+/*foot*/
+.footer{ width:100%; height:30px; line-height:30px; border-top:1px solid #e0e0e0; text-align:center;background-color:#fff; }
+/*申请成功页面*/
+.main_center{height:350px;text-align:center; padding-top:150px; font-size:15px;font-family:'MicroSoft YaHei';}
+/*弹出层*/
+.signin-box {
+	PADDING-BOTTOM: 40px; PADDING-LEFT: 40px; WIDTH: 650px; PADDING-RIGHT: 40px; DISPLAY: none; BACKGROUND: #fff; COLOR: #333; FONT-SIZE: 14px; PADDING-TOP: 40px; box-shadow: 0 2px 4px rgba(0, 0, 0, .8);font-family:'MicroSoft YaHei';
+}
+.signin-box A {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; COLOR: #0073b9; CURSOR: pointer; TEXT-DECORATION: underline; PADDING-TOP: 2px
+}
+.signin-box A:hover {
+	BACKGROUND: #0073b9; COLOR: #fff; TEXT-DECORATION: none
+}
+.signin-title {
+	MARGIN-BOTTOM: 25px
+}
+.signin-form {
+	MARGIN-BOTTOM: 25px; font-family:'微软雅黑'
+}
+
+.signin-title H1 {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 100%; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 36px; FONT-WEIGHT: 400; PADDING-TOP: 0px
+}
+
+.signin-form textarea {
+	FONT-SIZE: 16px
+}
+#btn{
+	color:#FFF; font-size:17px; cursor: pointer;height:40px; width:150px; background-color:#ee6644; border:none
+}
+.signin-foot {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #d7d7d7 2px dotted; PADDING-TOP: 25px
+}
+
+.signin-close A {
+	TEXT-ALIGN: center; LINE-HEIGHT: 24px; MARGIN: -20px -20px 0px 0px; WIDTH: 24px; FLOAT: right; HEIGHT: 24px; COLOR: #666; CURSOR: pointer; TEXT-DECORATION: none
+}
+.signin-close A:hover {
+	BACKGROUND: #666
+}

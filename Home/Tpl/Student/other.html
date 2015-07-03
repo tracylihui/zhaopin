@@ -1,0 +1,54 @@
+<div id="other">
+            <label id="changotherbtn" style="float:right; cursor:pointer">编辑</label>
+           <table width="500px" style="margin:0 auto;">
+        <tr>
+          <td class="need"></td>
+          <td style="width:105px;text-align:right; color:#999999">所获得的奖励：</td>
+          <td>{$student.reward}</td>
+          
+        </tr>
+        <tr>
+          <td class="need"></td>
+          <td style="text-align:right; color:#999999">所获得的资助：</td>
+          <td>{$student.support}</td>
+         
+        </tr>
+        <tr>
+          <td class="need"></td>
+          <td style="text-align:right; color:#999999">本学期空余时间：</td>
+          <td>{$student.freetime}</td>
+          
+        </tr>
+       
+      </table>
+          </div>
+          <div id="changeother" style="display:none;">
+            <label id="cancleotherbtn" style="float:right; cursor:pointer">取消</label>
+            <form class="registerform" method="post" action="__URL__/updateother">
+              <table width="500px" style="margin:0 auto;">
+        <tr>
+          <td class="need"></td>
+          <td style="width:105px;">所获得的奖励：</td>
+          <td style="width:205px;"><textarea  datatype="*" altercss="gray" class="gray" name="reward" value="">{$student.reward}</textarea></td>
+          <td><div class="Validform_checktip"></div></td>
+        </tr>
+        <tr>
+          <td class="need"></td>
+          <td style="width:100px;">所获得的资助：</td>
+          <td><textarea  datatype="*" altercss="gray" class="gray" name="support" value="">{$student.support}</textarea></td>
+          <td><div class="Validform_checktip"></div></td>
+        </tr>
+        <tr>
+          <td class="need"></td>
+          <td style="width:100px;">本学期空余时间：</td>
+          <td><textarea  datatype="*" altercss="gray" class="gray" name="freetime" value="">{$student.freetime}</textarea></td>
+          <td><div class="Validform_checktip"></div></td>
+        </tr>
+        <tr>
+                  <td class="need"></td>
+                  <td></td>
+                  <td colspan="2"><input type="submit" value="保存" /><span id="msgdemo" style="color:red;margin-left:30px;"></span></td>
+                </tr>
+      </table>
+            </form>
+          </div>

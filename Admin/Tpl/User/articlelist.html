@@ -1,0 +1,67 @@
+<form id="pagerForm" action="__URL__/index" method="post">
+	<input type="hidden" name="pageNum" value="{$currentPage}" />
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" /><!--每页显示多少条-->
+	<input type="hidden" name="_order" value="{$smarty.request._order}"/>
+	<input type="hidden" name="_sort" value="{$smarty.request._sort}"/>
+</form>
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<b>搜索：</b><input type="text" name="keyword" value="{$smarty.post.keyword}" /> 
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			
+			<li><a class="icon"  href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+			
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="112">
+		<thead>
+			<tr>
+				
+				<th width="15%"  orderField="title" <if condition="$_REQUEST._order eq 'title'">class="{$_REQUEST._sort}"</if>>项目标题</th>
+				<th width="55%">项目简介</th>
+				<th width="10%">项目时间</th>
+                <th width="5%" orderField="number" <if condition="$_REQUEST._order eq 'number'">class="{$_REQUEST._sort}"</if>>项目人数</th>
+                <th width="15%">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist id="vo" name="list">
+			<tr target="item_id" rel="{$vo.article.id}">
+				<td>{$vo.article.title}</td>
+				<td>{$vo.article.content}</td>
+				<td>{$vo.article.time}</td>
+                <td>{$vo.article.number}</td>
+                <td></td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				
+				<option value="20" {if $numPerPage==20}selected{/if} >20</option>
+				<option value="25" {if $numPerPage==25}selected{/if} >25</option>
+				<option value="30" {if $numPerPage==30}selected{/if} >30</option>
+			</select>
+			<span>共{$totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="8" currentPage="{$currentPage}"></div>
+	</div>
+</div>

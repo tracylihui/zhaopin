@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>个人中心_幸运百科</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		</script>
+		<script type="text/javascript">
+			try{
+			document.execCommand("BackgroundImageCache", false, true);
+			}catch(e){}
+		</script>
+		<script type="text/javascript">
+			window.staticTime=new Date().getTime();
+			if (self != top) {
+			top.location = self.location;
+			}
+		</script>
+		<link href="__PUBLIC__/css/newcenter.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/boot.js"></script>
+		<link href="__PUBLIC__/css/layer20.css" type="text/css" rel="stylesheet" media="all">
+		<link href="__PUBLIC__/css/v4.css" rel="stylesheet" type="text/css">
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css">
+	</head>
+	
+	<body>
+		<div style="z-index:512;" class="nsinatopbar">
+			<!--================公共头信息开始==================== -->
+			<{include file="Public/user/topbar.html"}>
+			<!--==============================================-->
+			<!--主题内容开始 -->
+			<div class="sinablogb">
+				<div class="sinablogbody">
+				<!--================公共导航信息开始==================== -->
+				<{include file="Public/user/nav.html"}>
+				<!--==============================================-->
+					<!--第二列start-->
+					<div class="s_secu_main">
+						<div class="m_sum">
+							<h3 class="title">修改密码</h3>
+							<div class="text_b sum_text">重要提示：每天互联网都会有大量用户的帐号存在着严重被盗的风险。如果你正在使用与其他网站相同的密码，建议你尽快修改。
+							</div>
+						</div>
+						<div class="m_warn" style="display:none;">
+							<img class="icon_secu icon_swarn" src="./xiugaimima_files/transparent.gif">当您无法登录帐户时，客服人员需要参考您填写的密保证件信息核对身份，并帮助您找回密码。如果您提供的信息有误，将给您找回密码造成障碍。
+						</div>
+						<div class="m_form">
+							<form id="idfrom" >
+								<dl class="clearfix">
+									<dt>现密码：</dt>
+									<dd><input type="password" class="input_text" id="scu_old_pwd" name="pass" value="<{$smarty.session.userinfo.pass}>"></dd>
+								</dl>
+								<dl class="clearfix">
+									<dt>新密码：</dt>
+									<dd><input type="password" class="input_text" id="aa" name="pass1" value=""></dd>
+								</dl>
+								<dl class="clearfix">
+									<dt>确认新密码：</dt>
+									<dd><input type="password" class="input_text" id="bb" name="pass2" value=""></dd>
+								</dl>
+								<!-- 冻结应用授权 -->
+								<dl class="btn_wrap clearfix" align="center">
+									<dt></dt>
+									<dd><button>提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button>重置</button></dd>
+								</dl>
+							</form>
+						</div>
+
+						<div class="m_prc_tip">
+							<h3 class="title">小贴士</h3>
+							<div class="tip_text text_b">将登录密码设置为8位以上，数字、大小写字母、特殊字符混合型是相对安全的，但通常不方便记忆，在这里我们教您一个小窍门：尝试用字母"O"代替数字零等等。同时，我们建议您每隔半年修改一次登录密码。</div>
+						</div>
+					</div>
+					<!--第二列end-->
+				</div>
+
+				<div id="cardWrap_7105276425" style="display:none;position: absolute; left:567px; z-index:100; top: 760px;" class="c_layer">
+					<div class="bg">
+						<div class="content" id="cardContent_7105276425" style="height:160;"></div>
+						<div class="arrow arrow_r" id="cardArrow_7105276425" style="top: auto; bottom: 50px;"></div>
+					</div>
+				</div>
+			</div>
+			<!--主题内容结束 -->
+			<!--================公共页脚信息开始==================== -->
+			<{include file="Public/user/footer.html"}>
+			<!--==================================================== -->
+		</div>
+		<div id="sudsclickdiv" name="sudsclickdiv" style="position:absolute;width:80;top:-300;left:400;visibility:hidden;z-index: 1"></div>
+	</body>
+</html>
+<script type="text/javascript">
+			//密码验证
+			$("#aa").focus(function(){
+				$(this).next("span").remove();
+				if($(this).val()=='密码'){
+					$(this).val(' ');
+				}
+				$(this).after("<span style=\"font-size:14px;color:#555\"> 8-16位字母数字下划线</span>");
+			}).blur(function(){
+				$(this).next("span").remove();
+				var name=$(this).val();
+				if(name.match(/^\w{8,16}$/)==null){				
+					$(this).after("<span style=\"font-size:14px;color:#f86913\">输入密码错误</span>");
+				}else{
+					$(this).after("<span style=\"font-size:14px;color:#555\"> 密码正确</span>");
+				}
+			});
+			//确认密码
+			$("#bb").focus(function(){
+				$(this).next("span").remove();
+				if($(this).val()=='确认密码'){
+					$(this).val(' ');
+				}
+				$(this).after("<span style=\"font-size:14px;color:#555\"> </span>");
+			}).blur(function(){
+				$(this).next("span").remove();
+				var name=$(this).val();
+				if($(this).val()!==$("#aa").val()){				
+					$(this).after("<span style=\"font-size:14px;color:#f86913\"> 密码错误</span>");
+				}else{
+					$(this).after("<span style=\"font-size:14px;color:#555\"> 密码正确</span>");
+				}
+			});
+		$("#idfrom").submit(function(){
+			$.ajax({
+			   url: "__APP__/Users/uppass",
+			   data:$(this).serialize() ,
+			   type:"post",
+			   dataType:"text",
+			   success: function(msg){
+				 alert(msg);
+			   }
+		
+		});
+		
+		return false;
+		});
+	
+</script>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="us">
+<head>
+<meta charset="utf-8">
+<title>个人中心_勤工助学在线申请系统</title>
+<link href="__PUBLIC__/css/style.css" rel="stylesheet">
+<link href="__PUBLIC__/personal/jquery-ui.min.css" rel="stylesheet">
+<link href="__PUBLIC__/reg/css/demo.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/reg/plugin/jqtransform/jqtransform.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/reg/plugin/datePicker/datePicker.css" type="text/css" rel="stylesheet" />
+<style>
+td {
+}
+</style>
+</head>
+<body>
+<include file="Public:header" />
+<div class="main white">
+  <div class="personal">
+    <div class="left">
+     <img src="__PUBLIC__/image/avatar.png" width="96"  height="96"/>
+     <div class="stuname">{$student.name}</div>
+      <ul>
+        <li><a id="one">个人信息</a></li>
+        <li><a id="two">在校信息</a></li>
+        <li><a id="three">其他信息</a></li>
+        <li><a id="four">修改密码</a></li>
+        <li><a id="five">在线反馈</a></li>
+        <li><a href="__APP__/Index">返回首页</a></li>
+      </ul>
+    </div>
+    <div class="right">
+      <div id="accordion">
+        <h3>个人信息</h3>
+        <div> <include file="person" /> </div>
+        <h3>在校信息</h3>
+        <div> <include file="school" /> </div>
+        <h3>其他信息</h3>
+        <div><include file="other" /></div>
+        <h3>修改密码</h3>
+        <div>
+          <form class="registerform" method="post" action="__URL__/updatepass">
+            <table width="500px" style="margin:0 auto;">
+              <tr>
+                <td class="need" style="width:10px;">*</td>
+                <td style="width:105px;">当前密码：</td>
+                <td style="width:205px;"><input type="password" name="oldpass" class="inputxt" datatype="*"/></td>
+                <td><div class="Validform_checktip"></div></td>
+              </tr>
+              <tr>
+                <td class="need" style="width:10px;">*</td>
+                <td>新密码：</td>
+                <td><input type="password" value="" name="pass" class="inputxt" datatype="*" nullmsg="请设置密码！" errormsg="输入错误！" /></td>
+                <td><div class="Validform_checktip"></div></td>
+              </tr>
+              <tr>
+                <td class="need">*</td>
+                <td>确认密码：</td>
+                <td><input type="password" value="" name="pass2" tip="test" class="inputxt" datatype="*" recheck="pass" nullmsg="请再输入一次密码！" errormsg="两次输入不一致！" /></td>
+                <td><div class="Validform_checktip"></div></td>
+              </tr>
+              <tr>
+                  <td class="need"></td>
+                  <td></td>
+                  <td colspan="2" ><input type="submit"  value="保存" /><span id="msgdemo" style="color:red;margin-left:30px;"></span></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        <h3>在线反馈</h3>
+        <div>
+        	<form class="registerform" method="post" action="__URL__/feedback">
+            <table width="500px" style="margin:0 auto;">
+              <tr>
+                <td class="need" style="width:10px;"></td>
+                <td style="width:105px;">联系方式：</td>
+                <td style="width:205px;"><input type="text" name="connect" class="inputxt"/></td>
+                <td><div class="Validform_checktip"></div></td>
+              </tr>
+              <tr>
+                <td class="need" style="width:10px;">*</td>
+                <td>反馈：</td>
+                <td><textarea tip="请在这里输入您本学期的空余时间。" datatype="*" altercss="gray" class="gray" name="content" value=""></textarea></td>
+                <td><div class="Validform_checktip"></div></td>
+              </tr>
+             <tr>
+                  <td class="need"></td>
+                  <td></td>
+                  <td colspan="2"><input type="submit" value="保存" /><span id="msgdemo" style="color:red;margin-left:30px;"></span></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        <!--
+         <h3>修改头像</h3>
+        <div>
+        	<form class="registerform" method="post" action="__URL__/feedback" enctype="multipart/form-data">
+           
+            <table width="300px" style="margin:0 auto;">
+              <tr>
+
+                <td width="300px">选择头像：<input name="image" type="file" /></td>
+               
+              </tr>
+              
+             <tr>
+             
+                  <td><input type="submit" value="提交" ><span id="msgdemo" style="color:red;margin-left:30px;"></span></td>
+                </tr>
+            </table>
+          </form>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer" /> 
+<script src="__PUBLIC__/js/jquery-1.6.2.min.js"></script> 
+<script src="__PUBLIC__/personal/jquery-ui.min.js"></script> 
+<script src="__PUBLIC__/reg/js/Validform_v5.3.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/reg/plugin/jqtransform/jquery.jqtransform.js"></script> 
+<script src="__PUBLIC__/reg/plugin/datePicker/jquery.datePicker-min.js"></script> 
+<script>
+/*表单美化js*/
+$(function(){
+	$(".registerform").Validform({
+		ajaxPost:true,
+		callback:function(data){
+			if(data.status=="y"){
+				window.location.reload();
+			}else{
+				var objtip=$(".registerform").find("#msgdemo");
+				
+				objtip.text(data.info);
+			}
+		},
+		tiptype:function(msg,o,cssctl){
+			if(!o.obj.is("form")){
+				var objtip=o.obj.parents("td").next().find(".Validform_checktip");
+				cssctl(objtip,o.type);
+				objtip.text(msg);
+			}
+		},
+		
+		usePlugin:{
+			jqtransform:{},
+			datepicker:{format:"yyyy-mm-dd",//指定输出的时间格式;
+				firstDayOfWeek:1,//指定每周开始的日期，0、1-6 对应 周日、周一到周六;
+				
+				//以上三个参数是在Validform插件内调用Datepicker时可传入的参数;
+				//下面几个参数是Datepicker插件本身初始化时可接收的参数，还有更多请查看页面说明;
+				clickInput:true,
+				startDate:"1970-00-00",
+				createButton:false}
+		}
+	});	
+	
+})
+
+/*手风琴的js*/
+$('#accordion').accordion({
+    active: 0,
+
+});
+$( "#selectmenu" ).selectmenu();
+$( "#selectmenu1" ).selectmenu();
+$( "#selectmenu2" ).selectmenu();
+$( "#selectmenu3" ).selectmenu();
+$( "#selectmenu4" ).selectmenu();
+$('#accordion div').css('height','auto');
+
+$('#changpersonbtn').click(function(e) {
+    $('#person').hide();
+	$('#changeperson').show();
+});
+$('#canclepersonbtn').click(function(e) {
+    $('#person').show();
+	$('#changeperson').hide();
+});
+$('#changschoolbtn').click(function(e) {
+    $('#school').hide();
+	$('#changeschool').show();
+});
+$('#cancleschoolbtn').click(function(e) {
+    $('#school').show();
+	$('#changeschool').hide();
+});
+$('#changotherbtn').click(function(e) {
+	
+    $('#other').hide();
+	$('#changeother').show();
+});
+$('#cancleotherbtn').click(function(e) {
+    $('#other').show();
+	$('#changeother').hide();
+});
+$('#one').click(function(e) {
+	 $('#accordion').accordion('option', 'active',0);
+    $('#one').addClass("current");
+	$('#two').removeClass("current");
+	$('#three').removeClass("current");
+	$('#four').removeClass("current");
+	$('#five').removeClass("current");
+});
+$('#two').click(function(e) {
+	
+    $('#accordion').accordion('option', 'active', 1);
+
+
+    $('#two').addClass("current");
+	$('#one').removeClass("current");
+	$('#three').removeClass("current");
+	$('#four').removeClass("current");
+	$('#five').removeClass("current");
+});
+$('#three').click(function(e) {
+	 $('#accordion').accordion('option', 'active', 2);
+    $('#three').addClass("current");
+	$('#two').removeClass("current");
+	$('#one').removeClass("current");
+	$('#four').removeClass("current");
+	$('#five').removeClass("current");
+});
+$('#four').click(function(e) {
+	$('#accordion').accordion('option', 'active', 3);
+    $('#four').addClass("current");
+	$('#two').removeClass("current");
+	$('#three').removeClass("current");
+	$('#one').removeClass("current");
+	$('#five').removeClass("current");
+});
+$('#five').click(function(e) {
+	$('#accordion').accordion('option', 'active', 4);
+    $('#five').addClass("current");
+	$('#two').removeClass("current");
+	$('#three').removeClass("current");
+	$('#four').removeClass("current");
+	$('#one').removeClass("current");
+});
+
+
+</script>
+</body>
+</html>

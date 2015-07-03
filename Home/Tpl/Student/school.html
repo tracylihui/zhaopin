@@ -1,0 +1,121 @@
+<div id="school">
+            <label id="changschoolbtn" style="float:right; cursor:pointer">编辑</label>
+            <table width="500px" style="margin:0 auto; font-size:13px;">
+              <tr>
+                <td class="need"></td>
+                <td style="width:105px;text-align:right; color:#999999">在校联系电话：</td>
+                <td>{$student.tel}</td>
+              </tr>
+              <tr>
+                <td class="need"></td>
+                <td style="text-align:right; color:#999999">QQ：</td>
+                <td>{$student.qq}</td>
+              </tr>
+              <tr>
+                <td class="need"></td>
+                <td style="text-align:right; color:#999999">学院：</td>
+                <td>{$student.academy}</td>
+              </tr>
+              <tr>
+                <td class="need"></td>
+                <td style="text-align:right; color:#999999">专业：</td>
+                <td>{$student.professional}</td>
+              </tr>
+              <tr>
+                <td class="need"></td>
+                <td style="text-align:right; color:#999999">年级：</td>
+                <td>{$student.grade}</td>
+              </tr>
+              <tr>
+                <td class="need"></td>
+                <td style="text-align:right; color:#999999">宿舍号：</td>
+                <td>{$student.dormitory}</td>
+              </tr>
+            </table>
+          </div>
+          <div id="changeschool" style="display:none;">
+            <label id="cancleschoolbtn" style="float:right; cursor:pointer">取消</label>
+            <form class="registerform" method="post" action="__URL__/updateschool">
+              <table width="500px" style="margin:0 auto;">
+                <tr>
+                  <td class="need">*</td>
+                  <td  style="width:105px;">在校联系电话：</td>
+                  <td  style="width:205px;"><input type="text" value="{$student.tel}" name="tel" class="inputxt" datatype="m" errormsg="请输入您的手机号码！"  /></td>
+                  <td><div class="Validform_checktip"></div></td>
+                </tr>
+                <tr>
+                  <td class="need">*</td>
+                  <td>QQ：</td>
+                  <td><input type="text" value="{$student.qq}" name="qq" class="inputxt" datatype="n"/></td>
+                  <td><div class="Validform_checktip"></div></td>
+                </tr>
+                <tr>
+                  <td class="need">*</td>
+                  <td>学院：</td>
+                  <td><select id="selectmenu1" name="academy" datatype="*">
+                      <option value="">请选择学院</option>
+                      
+                      <volist id="vo" name="academy">
+                      <option <if condition="$student['academy'] eq $vo['academy']">selected</if> value ="{$vo.academy}">{$vo.academy}</option>
+                      </volist>
+                    </select></td>
+                </tr>
+                <tr>
+                  <td class="need">*</td>
+                  <td>专业：</td>
+                  <td><input type="text" value="{$student.professional}" name="professional" class="inputxt" datatype="*"/></td>
+                  <td><div class="Validform_checktip"></div></td>
+                </tr>
+                <tr>
+                  <td class="need">*</td>
+                  <td>年级：</td>
+                  <td><select name="grade" id="selectmenu4" datatype="*">
+                        
+                        <volist id="vo" name="years">
+						<option <if condition="$student['grade'] eq $vo">selected</if> value ="{$vo}">{$vo}级</option>
+						</volist>
+                      </select></td>
+                  
+                </tr>
+                <tr>
+                  <td class="need">*</td>
+                  <td>宿舍号：</td>
+                  <td><div style="float:left">
+                      <select name="dormitory1" id="selectmenu2" datatype="*" style="width:73px; float:left">
+                        
+                        <volist id="vo" name="dormitory">
+                        <option <if condition="$student['dormitory1'] eq $vo['dormitory']">selected</if> value ="{$vo.dormitory}">{$vo.dormitory}</option>
+                        </volist>  
+                      </select>
+                    </div>
+            <div style="float:left">
+              <div style="float:left">
+                        <select name="dormitory2" id="selectmenu3" datatype="*" style="width:63px;float:left">
+                          <option <if condition="$student['dormitory2'] eq '1舍'">selected</if> value="1舍">1舍</option>
+                          <option <if condition="$student['dormitory2'] eq '2舍'">selected</if> value="2舍">2舍</option>
+                          <option <if condition="$student['dormitory2'] eq '3舍'">selected</if> value="3舍">3舍</option>
+                          <option <if condition="$student['dormitory2'] eq '4舍'">selected</if> value="4舍">4舍</option>
+                          <option <if condition="$student['dormitory2'] eq '5舍'">selected</if> value="5舍">5舍</option>
+                          <option <if condition="$student['dormitory2'] eq '6舍'">selected</if> value="6舍">6舍</option>
+                          <option <if condition="$student['dormitory2'] eq '7舍'">selected</if> value="7舍">7舍</option>
+                          <option <if condition="$student['dormitory2'] eq '8舍'">selected</if> value="8舍">8舍</option>
+                          <option <if condition="$student['dormitory2'] eq '9舍'">selected</if> value="9舍">9舍</option>
+                          <option <if condition="$student['dormitory2'] eq '10舍'">selected</if> value="10舍">10舍</option>
+                          <option <if condition="$student['dormitory2'] eq '11舍'">selected</if> value="11舍">11舍</option>
+                          <option <if condition="$student['dormitory2'] eq '12舍'">selected</if> value="12舍">12舍</option>
+                          <option <if condition="$student['dormitory2'] eq '13舍'">selected</if> value="13舍">13舍</option>
+                          <option <if condition="$student['dormitory2'] eq '14舍'">selected</if> value="14舍">14舍</option>
+                        </select>
+                     
+                        </div><div style="float:left"><input type="text" value="{$student.dormitory3}" name="dormitory3" size="5" class="inputxt" datatype="n"/></div>
+            </div></td>
+                  <td><div class="Validform_checktip"></div></td>
+                </tr>
+                <tr>
+                  <td class="need"></td>
+                  <td></td>
+                  <td colspan="2"><input type="submit" value="保存" /><span id="msgdemo" style="color:red;margin-left:30px;"></span></td>
+                </tr>
+              </table>
+            </form>
+          </div>

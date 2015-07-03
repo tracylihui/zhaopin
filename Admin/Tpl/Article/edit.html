@@ -1,0 +1,99 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update"  class="pageForm required-validate"
+		onsubmit="return validateCallback(this,dialogAjaxDone);">
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="57">
+      <dl>
+        <dt>项目标题：</dt>
+        <dd>
+          <input type="text" class="required" size="70" name="title" value="{$vo.title}"/>
+        </dd>
+      </dl>
+      <div class="divider"></div>
+      <dl class="nowrap">
+        <dt>项目简介：</dt>
+        <dd>
+          <textarea class="editor" name="content" rows="15" cols="100" 
+
+tools="simple">{$vo.content}</textarea>
+        </dd>
+      </dl>
+     <dl>
+        <dt>职位：</dt>
+        <dd>
+          <input type="text" class="required" size="100" name="position" value="{$vo.position}"/><span class="info">每个职位之间请用"|"分隔</span>
+        </dd>
+      </dl>
+     <div class="divider"></div>
+      <div class="divider"></div>
+      <dl>
+        <dt>项目时间：</dt>
+        <dd>
+          <input type="text" class="required" size="30" name="time" value="{$vo.time}"/>
+        </dd>
+      </dl>
+      <dl>
+        <dt>项目人数：</dt>
+        <dd>
+          <input type="text" size="30" name="number" value="{$vo.number}" placeholder="若不填，则为若干"/>
+        </dd>
+        
+      </dl>
+      <dl>
+        <dt>项目地点：</dt>
+        <dd>
+          <input type="text" class="required" size="30" name="place" value="{$vo.place}"/>
+        </dd>
+      </dl>
+      <dl>
+        <dt>项目单位：</dt>
+        <dd>
+          <input type="text" class="required" size="30" name="company" value="{$vo.company}"/>
+        </dd>
+      </dl>
+      
+      <dl class="nowrap">
+        <dt>项目要求(年级)：</dt>
+        <dd>
+          <select name="grade" class="combox">
+            <option value ="0">所有</option>
+           <volist id="vo1" name="years">
+            <option <if condition="$vo['grade'] eq $vo1">selected</if> value ="{$vo1}">{$vo1}级</option>
+            </volist>
+          </select>
+        </dd>
+      </dl>
+      <dl class="nowrap">
+        <dt>项目要求(性别)：</dt>
+        <dd>
+          <select name="sex" class="combox">
+            <option value ="2">所有</option>
+            <option <if condition="$vo['sex'] eq 1">selected</if> value ="1">男</option>
+            <option <if condition="$vo['sex'] eq 0">selected</if> value ="0">女</option>
+          </select>
+        </dd>
+      </dl>
+      <div class="divider"></div>
+    </div>
+    <div class="formBar">
+      <ul>
+        <li>
+          <div class="buttonActive">
+            <div class="buttonContent">
+              <button type="submit">保存</button>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="button">
+            <div class="buttonContent">
+              <button type="button" class="close">取消</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+	</form>
+</div>
+

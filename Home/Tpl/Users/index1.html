@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>个人中心_幸运百科</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		<style type="text/css">
+		
+		</style>
+		<script type="text/javascript">
+			try{
+			document.execCommand("BackgroundImageCache", false, true);
+			}catch(e){}
+		</script>
+		<script type="text/javascript">
+			window.staticTime=new Date().getTime();
+			if (self != top) {
+			top.location = self.location;
+			}
+		</script>
+		<LINK rel=stylesheet type="text/css" href="__PUBLIC__/css/index_style_web.css" media="screen, projection">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/login.js"></script>
+		<link href="__PUBLIC__/css/newcenter.css" type="text/css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div style="z-index:512;margin-bottom:25px;" class="nsinatopbar">
+			<!--================公共头信息开始==================== -->
+			<{include file="Public/user/topbar.html"}>
+			<!--==============================================-->
+			<!--主题内容开始 -->
+			<div class="sinablogb">
+				<div class="sinablogbody" style="height:600px;">
+				<!--================公共导航信息开始==================== -->
+				<{include file="Public/user/nav.html"}>
+				<!--==============================================-->
+				<!--第二列start-->
+				<div id="column_1" class="SG_colW73 SG_colFirst">      
+					<div class="SG_conn" id="module_1010">
+						<div class="SG_connHead">
+							 <span class="title">最感兴趣的人</span>
+						</div>      
+						<{foreach $list as $fd}>
+						<div class="friend">
+							<div class="f_img"><img src="__PUBLIC__/uploads/m_<{$fd.picname|default:'missing.png'}>" width="80" height="80"></div>
+							<div class="f_con">
+								<div class="xm">
+									<div class="gz3"><{$fd.username}></div>
+									<div class="gz2"></div>
+								</div>
+								<div class="clear"></div>
+								<div class="gz" style="display:block;" id='g'>
+									<div class="gz1" rel="<{$fd.id}>" onclick="fun(<{$fd.id}>)">+ 关注</div>
+								</div>
+								<div class="gz" style="display:none;" id='y'>
+									<div class="gz1" rel="<{$fd.id}>" onclick="fun(<{$fd.id}>)">已关注</div>
+								</div>
+							</div>
+						</div>
+						<{/foreach}>
+						<div class="clear"></div>
+							<div class="ye1">
+								<div align="center" >
+									<div >
+										<{$showpage}>
+									</div>
+								</div>
+							</div>
+					<div class="SG_connFoot"></div>
+					</div>
+				</div>
+				<!--第二列end-->
+					
+				</div>
+
+				<div id="cardWrap_7105276425" style="display:none;position: absolute; left:567px; z-index:100; top: 760px;" class="c_layer">
+					<div class="bg">
+						<div class="content" id="cardContent_7105276425" style="height:160;"></div>
+						<div class="arrow arrow_r" id="cardArrow_7105276425" style="top: auto; bottom: 50px;"></div>
+					</div>
+				</div>
+			</div>
+			<!--主题内容结束 -->
+			<!--================公共页脚信息开始==================== -->
+			<{include file="Public/footer.html"}>
+			<!--==================================================== -->
+		</div>
+		<div id="sudsclickdiv" name="sudsclickdiv" style="position:absolute;width:80;top:-300;left:400;visibility:hidden;z-index: 1"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	function fun(aa){
+		$.ajax({
+		   type: "POST",
+		   url: "__APP__/Users/inser1",
+		   data: "aid="+aa+"&uid=<{$smarty.session.userinfo.id}>",
+		   success: function(msg){
+				if(msg=='true'){
+					$('#y').css('display','block');
+					$('#g').css('display','none');
+				}
+		   }
+		});
+	}
+
+</script>

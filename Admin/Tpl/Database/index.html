@@ -1,0 +1,74 @@
+<form id="pagerForm" action="__URL__/index" method="post">
+	<input type="hidden" name="pageNum" value="{$currentPage}" />
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" /><!--每页显示多少条-->
+	<input type="hidden" name="_order" value="{$smarty.request._order}"/>
+	<input type="hidden" name="_sort" value="{$smarty.request._sort}"/>
+</form>
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<b>搜索：</b><input type="text" name="keyword" value="{$smarty.post.keyword}" /> 
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/backup/navTabId/listRestore" target="ajaxTodo" title="确定要备份吗?"><span>数据库备份</span></a></li>
+			
+			<li><a class="edit" href="__URL__/restore" target="navTab" rel="listRestore"><span>数据库还原</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="112">
+		<thead>
+			<tr>
+                <th>表名</th>
+                <th>表用途</th>
+                <th>记录行数</th>
+                <th>引擎</th>
+                <th>字符集</th>
+                <th>表大小</th>
+                <th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist id="vo" name="vlist">
+			<tr>
+				<td>{$vo.Name}</td>
+                <td>{$vo.Comment}</td>
+                <td>{$vo.Rows}</td>
+                <td>{$vo.Engine}</td>
+                <td>{$vo.Collation}</td>
+                <td>{$vo.size}</td>
+                <td>
+                <a href="__URL__/optimize/tablename/{$vo.Name}/navTabId/listDatabase" target="ajaxTodo" >优化</a>
+                <a href="__URL__/repair/tablename/{$vo.Name}/navTabId/listDatabase" target="ajaxTodo">修复</a>
+                <!--a href="{:U(GROUP_NAME. '/Database/repair',array('tablename' => $v['Name']), '')}">结构</a-->            
+				</td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				
+				<option value="20" {if $numPerPage==20}selected{/if} >20</option>
+				<option value="25" {if $numPerPage==25}selected{/if} >25</option>
+				<option value="30" {if $numPerPage==30}selected{/if} >30</option>
+			</select>
+			<span>共{$totalCount}条</span>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="8" currentPage="{$currentPage}"></div>
+	</div>
+</div>

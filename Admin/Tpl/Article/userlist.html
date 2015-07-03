@@ -1,0 +1,26 @@
+<h2 class="contentTitle">【{$article.title}】的审核员</h2>
+<style>
+	.pageFormContent p{width:380px;}/*表单项宽度*/
+	.pageFormContent p label{width:80px;text-align:right;margin-right:5px;} /*表单标题加粗 font-weight:bold;*/ 
+	span.error{left:200px;}/*错误信息浮动位置*/
+</style>
+<div class="pageContent">
+	<form action="__APP__/Article/savenode/callbackType/closeCurrent" method="post" class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone)">
+		<input type="hidden" name="aid" value="{$article.id}"/>
+		<div class="pageFormContent nowrap" layoutH="105">
+            <volist id="vo" name="userlist">
+				<div style="width:150px;float:left;margin-top:5px;">
+					<input type="checkbox" name="uids[]" <if condition="in_array($vo['id'],$myuid)">checked</if>  value="{$vo.id}"/>{$vo.name}
+				</div>
+			</volist>
+			
+		</div>		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

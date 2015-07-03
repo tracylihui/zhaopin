@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>个人中心_幸运百科</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		<script type="text/javascript">
+			try{
+			document.execCommand("BackgroundImageCache", false, true);
+			}catch(e){}
+		</script>
+		<script type="text/javascript">
+			window.staticTime=new Date().getTime();
+			if (self != top) {
+			top.location = self.location;
+			}
+		</script>
+		<link href="__PUBLIC__/css/newcenter.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="__PUBLIC__/js/boot.js"></script>
+		<link href="__PUBLIC__/css/layer20.css" type="text/css" rel="stylesheet" media="all">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/jcrop_zh/js/jquery.Jcrop.js"></script>
+		<link rel="stylesheet" href="__PUBLIC__/jcrop_zh/css/jquery.Jcrop.css" type="text/css" />
+		<script type="text/javascript">
+		var pcob = new Object();
+		//文件上传后，在iframe中，会调用此方法
+		function uploadCallBack(filename){
+			if(filename==false){
+				alert("文件上传失败");
+				return;
+			}
+			pcob.picname=filename; //保存住图片名
+			//alert("文件上传成功："+filename);
+			//得到了文件名，就能进行显示等相关操作了。
+			$("#mypic").append("<img id='mid' src='__PUBLIC__/Uploads/"+filename+"'/>");
+			
+			//选择图片，并绑定裁剪框事件
+			$("#mid").Jcrop({
+				onChange:showCoords,
+				onSelect:showCoords
+			});	
+		
+		}
+		
+		//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
+		function showCoords(obj){
+			/*
+			$("#x1").val(obj.x);
+			$("#y1").val(obj.y);
+			$("#x2").val(obj.x2);
+			$("#y2").val(obj.y2);
+			$("#w").val(obj.w);
+			$("#h").val(obj.h);
+			*/
+			//获取裁剪位置及宽高。
+			pcob.x=obj.x;
+			pcob.y=obj.y;
+			pcob.w=obj.w;
+			pcob.h=obj.h;
+		}
+		
+		//执行裁剪处理
+		function docut(){
+			var pic=$("#p").val();
+			$.ajax({
+				type:"POST",
+				url:"__APP__/Users/doCut?oldpic="+pic,
+				data:pcob,
+				success:function(){
+					$("#mypic").empty();
+					$("#mypic").append("<img id='mid' src='__PUBLIC__/Uploads/"+pcob.picname+"?id="+Math.random()+"'/>");
+					//选择图片，并绑定裁剪框事件
+					$("#mid").Jcrop({
+						onChange:showCoords,
+						onSelect:showCoords,
+					});	
+					changeheadpic(pcob.picname);
+				}
+			
+			});
+			
+		} 
+	
+	</script>
+	</head>
+	<body>
+		<div style="z-index:512;" class="nsinatopbar">
+			<!--================公共头信息开始==================== -->
+			<{include file="Public/user/topbar.html"}>
+			<!--==============================================-->
+			<script>
+				function changeheadpic(picname){
+					$("#headpic").attr("src","__PUBLIC__/uploads/"+picname);
+				}
+			</script>
+			<!--主题内容开始 -->
+			<div class="sinablogb">
+				<div class="sinablogbody">
+				<!--================公共导航信息开始==================== -->
+				<{include file="Public/user/nav.html"}>
+				<!--==============================================-->
+					<!--第二列start-->
+					<div id="column_1" class="SG_colW73 SG_colFirst">       
+						<div id="module_957" class="SG_conn">
+							<div class="SG_connHead">
+								<span comp_title="我的关注" class="title">修改头像</span>
+								<span class="edit"></span>
+							</div>
+							
+							<div class="SG_connBody">
+								<div class="center">
+								   <!-- 上层页签 end -->
+										<iframe name="iframe1" src="" frameborder="0" style="display:none" ></iframe>
+											<!-- 将from表单的target属性，指定到一个隐藏的iframe中 -->
+											<form action="__APP__/users/doupload" id="fm" method="post" target="iframe1" enctype="multipart/form-data">
+												<input type="hidden" id="p" name="oldpic" value="<{$vo.picname}>"/>
+												<table width="100%">
+												<tr class="gx"></tr>
+													<tr>
+														<td style="font-size:14px">昵称：</td>
+														<td><input type="text" name="username" id="" value="<{$vo.username}>"/></td>
+														<td colspan="2">*4-30个字符(中文占2个字符),支持中英文、数字、“_”</td>
+													</tr>
+													<tr class="gx"></tr>
+													<tr>
+														<td style="font-size:14px">头像：</td>
+														<td><input type="file" name="picname" size="24"/><input type="submit" value="上传" /></td>
+														<td>*仅支持JPG、GIF、PNG图片文件</td>
+													</tr>
+												</table>
+											</form>
+											<div class="img_t">您上传的头像会自动生成三种规格，<br/>请注意<strong>中小</strong>尺寸头像是否清晰！</div>
+											<div class="img_con">
+												<div class="img_l">
+													<div class="img" id="mypic"></div>
+													<div class="img_t">大尺寸头像 240x240 像素</div>
+												</div>
+												<div class="img_r">
+													<div class="img_rt" id="mypic1"><img src="__PUBLIC__/uploads/<{$vo.picname}>"/></div>
+													<div class="img_rtc">原头像 <br/>140x140 <br/>像素 (自动生成)</div>
+												</div>
+											</div>
+											<tr class="gx"></tr>
+											<div class="aniu">
+												<button onclick="docut()">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;
+											</div>
+											<br/><br/>
+											<div id="mypic"></div>
+									<div class="SG_page SG_j_linedot1"><ul class="SG_pages"></ul></div>
+								</div>
+							</div>  
+								 
+							<div class="SG_connFoot"></div>
+						</div>
+					</div>
+				<!--第二列end-->
+				</div>
+
+				<div id="cardWrap_7105276425" style="display:none;position: absolute; left:567px; z-index:100; top: 760px;" class="c_layer">
+					<div class="bg">
+						<div class="content" id="cardContent_7105276425" style="height:160;"></div>
+						<div class="arrow arrow_r" id="cardArrow_7105276425" style="top: auto; bottom: 50px;"></div>
+					</div>
+				</div>
+			</div>
+			<!--主题内容结束 -->
+			<!--================公共页脚信息开始==================== -->
+			<{include file="Public/user/footer.html"}>
+			<!--==================================================== -->
+		</div>
+		<div id="sudsclickdiv" name="sudsclickdiv" style="position:absolute;width:80;top:-300;left:400;visibility:hidden;z-index: 1"></div>
+	</body>
+</html>

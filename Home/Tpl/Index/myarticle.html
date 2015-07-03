@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>勤工助学在线申请系统</title>
+<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<include file="Public:header" />
+<include file="Public:menu" />
+<div class="main white padtop">
+	<div class="biaoti">
+    	<ul>
+            	<li style="width:275px;">职位名称</li>
+                <li style="width:170px;">发布单位</li>
+                <li style="width:120px;">申请反馈</li>
+                <li style="width:165px;">更新时间</li>
+				<li style="width:95px;">操作</li>
+        </ul>
+    </div>
+	<foreach name="list" item="vo">
+    	<div class="myarticle">
+        	<ul>
+            	<li style="width:275px;">{$vo.article.title}</li>
+                <li style="width:170px;">{$vo.article.company}</li>
+                <li style="width:120px;">{$vo.status|showstatus}</li>
+                <li style="width:165px;">{$vo.addtime|date='Y-m-d H:m:s', ###}</li>
+				<li style="width:95px;"><a href="__APP__/article/edit/aid/{$vo.aid}" title="在未处理之前可以修改">修改</a></li>
+            </ul>
+        </div>
+ 	</foreach>
+    <div class="scott">{$page}</div>
+</div>
+
+<include file="Public:footer" />
+</body>
+</html>

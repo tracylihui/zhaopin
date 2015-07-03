@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>个人中心</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<LINK rel=stylesheet type="text/css" href="__PUBLIC__/css/index_style_web.css" media="screen, projection">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/login.js"></script>
+<link href="__PUBLIC__/css/newcenter.css" type="text/css" rel="stylesheet">
+<script>
+	function setTab(name,cursel,n){
+ for(i=1;i<=n;i++){
+  var menu=document.getElementById(name+i);
+  var con=document.getElementById("con_"+name+"_"+i);
+  menu.className=i==cursel?"hover":"";
+  con.style.display=i==cursel?"block":"none";
+ }
+}
+</script>
+</head>
+
+<body>
+<div style="z-index:512;margin-bottom:25px;" class="nsinatopbar"> <{include file="Public/user/topbar.html"}>
+  <div class="sinablogbody">
+    <div class="SG_connr">
+    	<div class="pic"><img src="__PUBLIC__/Uploads/<{$vo.picname}>" /></div>
+        <div class="personal">
+        	<div class="username"><{$smarty.session.userinfo.username}></div>
+            <div>
+            	<div class="hh1">关注：<{$smarty.session.num}></div>
+                <div class="hh2">粉丝：<{$smarty.session.num1}></div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+    	<div class="temp">
+        	<ul>
+        		<li id="one1" onclick="setTab('one',1,3)" class="hover">已通过糗事</li>
+       			<li id="one2" onclick="setTab('one',2,3)">未通过糗事</li>
+                <li id="one3" onclick="setTab('one',3,3)">评论</li>
+      		</ul>
+        </div>
+        <div>
+      		<div id="con_one_1">
+            <DIV class=col1> <{block name="title"}><!--模板继承可重写源区--> 
+              <{/block}> 
+              <!--===============一个帖子开始=================--> 
+              <{if !empty($list) }><!--判断是否有数据--> 
+              <{foreach $list as $v}>
+              <DIV id=qiushi_tag_<{$v.id}> class="block1 untagged">
+        <DIV class=detail> <A href="__APP__/Article/detail/aid/<{$v.id}>" title="单帖查看" target=_blank><{$v.title}></A> <!--查看单个帖子的详情--> 
+        </DIV>
+        <DIV class=author> <{$v.title}> </DIV>
+        <DIV class=content > <{$v.content|replace:<{$keyword}>:"<SPAN style='BACKGROUND-COLOR: #ff6; COLOR: black'><{$keyword}></SPAN>"}> </DIV>
+        
+        <{if !empty($v.tag)}>
+        <DIV class=tags><!--带标签   到时这里要判断有无标签决定是否需要这个div--> 
+                  <SPAN class=bti></SPAN> <A href="__APP__/Search/tag/name/<{$v.tag}>"><{$v.tag}></A> &nbsp; </DIV>
+        <{/if}>
+       </DIV>
+    <DIV class=shadow1></DIV>
+    <!--分隔条--> 
+    <{/foreach}>
+    <{/if}> 
+   
+  </DIV>
+            </div>
+        	<div id="con_one_2">
+            	<DIV class=col1> <{block name="title"}><!--模板继承可重写源区--> 
+              <{/block}> 
+              <!--===============一个帖子开始=================--> 
+              <{if !empty($list2) }><!--判断是否有数据--> 
+              <{foreach $list2 as $v}>
+              <DIV id=qiushi_tag_<{$v.id}> class="block1 untagged">
+       
+        <DIV class=author> <{$v.title}> </DIV>
+        <DIV class=content > <{$v.content|replace:<{$keyword}>:"<SPAN style='BACKGROUND-COLOR: #ff6; COLOR: black'><{$keyword}></SPAN>"}> </DIV>
+        
+        <{if !empty($v.tag)}>
+        <DIV class=tags><!--带标签   到时这里要判断有无标签决定是否需要这个div--> 
+                  <SPAN class=bti></SPAN> <A href="__APP__/Search/tag/name/<{$v.tag}>"><{$v.tag}></A> &nbsp; </DIV>
+        <{/if}>
+       </DIV>
+    <DIV class=shadow1></DIV>
+    <!--分隔条--> 
+    <{/foreach}>
+    <{/if}> 
+   
+  </DIV>
+            </div>   
+            <div id="con_one_3">
+            	<ul>
+                	 <{foreach $comment as $v}><li>对&nbsp;&nbsp;&nbsp;<a href="__APP__/Article/detail/aid/<{$v.aid}>"><{$v.article.title}></a>&nbsp;&nbsp;的评论：<{$v.content}></li><{/foreach}>
+                </ul>
+            </div>  
+      	</div>
+    </div>
+  </div>
+</div>
+
+<!--================公共页脚信息开始==================== --> 
+<{include file="Public/footer.html"}> 
+<!--==================================================== -->
+</body>
+</html>

@@ -1,0 +1,169 @@
+
+<div class="pageContent">
+  <div class="pageFormContent" layoutH="60">
+    <dl>
+      <dt>学号：</dt>
+      <dd>
+        <input type="text" readonly name="studentid" value="{$vo.studentid}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>姓名：</dt>
+      <dd>
+        <input type="text" readonly name="name" value="{$vo.name}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>身份证号：</dt>
+      <dd>
+        <input type="text" readonly name="idnumber" value="{$vo.idnumber}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>性别：</dt>
+      <dd>
+        <input type="text" readonly name="sex" value="{$vo.sex}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>民族：</dt>
+      <dd>
+        <input type="text" readonly name="nation" value="{$vo.nation}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>政治面貌：</dt>
+      <dd>
+        <input type="text" readonly name="political" value="{$vo.political}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>家庭人均收入：</dt>
+      <dd>
+        <input type="text" readonly name="income" value="{$vo.income}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>家庭地址：</dt>
+      <dd>
+        <input type="text" readonly size="30" name="address" value="{$vo.address}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>学院：</dt>
+      <dd>
+        <input type="text" readonly name="academy" value="{$vo.academy}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>专业：</dt>
+      <dd>
+        <input type="text" readonly name="professional" value="{$vo.professional}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>年级：</dt>
+      <dd>
+        <input type="text" readonly name="grade" value="{$vo.grade}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>电话：</dt>
+      <dd>
+        <input type="text" readonly name="tel" value="{$vo.tel}"/>
+      </dd>
+    </dl>
+    <div class="divider"></div>
+    <dl>
+      <dt>是否孤儿：</dt>
+      <dd>
+        <input type="text" readonly name="orphan" value="{$vo.orphan}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>是否单亲：</dt>
+      <dd>
+        <input type="text" readonly name="singleparent" value="{$vo.singleparent}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>是否离异：</dt>
+      <dd>
+        <input type="text" readonly name="divorce" value="{$vo.divorce}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>是否残疾：</dt>
+      <dd>
+        <input type="text" readonly name="disability" value="{$vo.disability}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>是否烈士子女：</dt>
+      <dd>
+        <input type="text" readonly name="martyr" value="{$vo.martyr}"/>
+      </dd>
+    </dl>
+    <dl>
+      <dt>寝室：</dt>
+      <dd>
+        <input type="text" readonly name="dormitory" value="{$vo.dormitory}"/>
+      </dd>
+    </dl>
+    
+    <div class="divider"></div>
+    <dl style="height:auto">
+		<dt>所获得的奖励：</dt>
+		<dd><textarea type="text" rows="6" style="width:100%" readonly name="reward">{$vo.reward}</textarea></dd>
+	</dl>
+     
+    <dl style="height:auto">
+		<dt>所获得的资助：</dt>
+		<dd><textarea type="text" rows="6" style="width:100%"  readonly name="support">{$vo.support}</textarea></dd>
+	</dl>
+     <div class="divider"></div>
+    <dl>
+		<dt>本学期空余时间：</dt>
+		<dd><textarea type="text" rows="6" style="width:100%"  readonly name="freetime">{$vo.freetime}</textarea></dd>
+	</dl>
+    <dl>
+		<dt>申请理由：</dt>
+		<dd><textarea type="text" rows="6" style="width:100%" readonly name="reason">{$vo.reason}</textarea></dd>
+	</dl>
+  </div>
+  <form method="post" action="__URL__/checkArticle/navTabId/listApplyNo/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);">
+    <?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+    <input type="hidden" name="id" value="{$vo.id}" />
+    <input type="hidden" name="status" value="" />
+   
+    <!--封装当前登陆的id-->
+    <div class="formBar">
+      <ul>
+        <li>
+          <div class="buttonActive">
+            <div class="buttonContent">
+              <button onclick="before_submit(2)" type="submit">审核通过</button>
+            </div>
+          </div>
+        </li>
+        
+        <!--<li><div class="buttonActive"><div class="buttonContent"><button onclick="before_submit(0)"type="submit">不处理</button></div></div></li>-->
+        <li>
+          <div class="button">
+            <div class="buttonContent">
+              <button type="button" class="close">关闭</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
+  <script type="text/javascript">
+		//通过button按钮的click事件 动态根据单击的提交按钮更改 提交地址的audit的值
+		function before_submit(type){
+			$("form input[name='status']").val(type);
+		}
+	
+	</script> 
+</div>

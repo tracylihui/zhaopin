@@ -1,0 +1,16 @@
+<div id='apply-form' class='signin-box' name="" style="position:absolute;display:none;z-index:3000;">
+	<div class=signin-close><a class=close onclick="closeLoginForm()">X</a> </div>
+	<div class=signin-title>
+		<H1>申请理由</H1>
+	</div>
+	<form id="applyform" action="__URL__/apply" method="post">
+	<div class=signin-form>
+		
+			<input type="hidden" name="aid" value="">
+			<textarea autofocus="autofocus" maxlength="200" cols="78" rows="7" placeholder="请输入你的申请理由" required="required" name="reason"></textarea>
+	</div>
+	<div class=signin-foot>
+		<button id="btn">提交</button> 	
+	</div>
+    </form>
+</div>
